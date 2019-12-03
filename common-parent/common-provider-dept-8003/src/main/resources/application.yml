@@ -1,0 +1,61 @@
+
+
+
+#\u914D\u7F6E\u670D\u52A1\u5668\u4FE1\u606F
+server:
+  port: 8003
+  #context-path: /study \u914D\u7F6E\u6839\u76EE\u5F55
+
+
+#\u6570\u636E\u5E93\u4FE1\u606F\u914D\u7F6E
+spring:
+  application:
+    name: microservicecloud-dept   #\u5E94\u7528\u540D\u79F0
+  datasource:
+    url: jdbc:mysql://localhost:3306/clouddb03?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #druid\u8FDE\u63A5\u6C60\u914D\u7F6E
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # \u914D\u7F6E\u76D1\u63A7\u7EDF\u8BA1\u62E6\u622A\u7684filters,\u53BB\u6389\u76D1\u63A7\u754C\u9762sql\u65E0\u6CD5\u7EDF\u8BA1\uFF0C\u2018wall\u2019\u7528\u4E8E\u9632\u706B\u5899
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    userGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#Mybatis\u914D\u7F6E
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.mju.band3.entity
+  configuration:
+    map-underscore-to-camel-case: true #\u5F00\u542F\u9A7C\u5CF0\u547D\u540D
+    cache-enabled: true  #\u5F00\u542F\u4E8C\u7EA7\u7F13\u5B58
+#\u5BA2\u6237\u7AEF\u6CE8\u518C\u8FDBeureka\u670D\u52A1\u5217\u8868
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    #\u670D\u52A1\u5B9E\u4F8B\u540D\u79F0\u4FEE\u6539
+    instance-id: common-dept-8003
+    #\u8BBF\u95EE\u8DEF\u5F84\u663E\u793AIP\u5730\u5740
+    prefer-ip-address: true
+
+info:
+  app.name: study-springcloud-micoservices
+  company.name: com.mju.band3
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

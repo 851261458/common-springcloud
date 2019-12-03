@@ -1,0 +1,30 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: common-zuul-gateway-9527
+
+eureka:
+  instance:
+    instance-id: gateway-9572
+    prefer-ip-address: true
+  client:
+    service-url:
+      # \u5355\u673A\u7248\u914D\u7F6EdefaultZone: http://${eureka.instance.hostname}:${server.port}/eureka #\u8BBE\u7F6E\u4E0Eeureka server \u4EA4\u4E92\u7684\u5730\u5740\u67E5\u8BE2\u670D\u52A1\u548C\u6CE8\u518C\u670D\u52A1\u90FD\u9700\u8981\u4F9D\u8D56\u7684\u5730\u5740
+      #\u96C6\u7FA4\u914D\u7F6E
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+zuul:
+  routes:
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+  #\u591A\u4E2A\u7528"*" ignored-services: "*"
+  ignored-services: microservicecloud-dept #\u9690\u85CF\u771F\u5B9E\u5730\u5740\uFF0C\u66B4\u9732\u865A\u62DF\u5730\u5740/mydept,\u5982\u679C\u662F"*"\u5C31\u662F\u9690\u85CF\u6240\u6709\u7684\u771F\u5B9E\u5730\u5740
+  prefix: /springcloud #\u7EDF\u4E00\u524D\u7F00
+
+
+
+info:
+  app.name: springcloud-study-zuul-gateway
+  company.name: com.mju.band3
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

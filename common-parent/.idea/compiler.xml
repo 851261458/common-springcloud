@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="common-api" />
+        <module name="common-consumer-dept-80" />
+        <module name="common-consumer-dept-feign" />
+        <module name="common-consumer-hystrix-dashboard" />
+        <module name="common-eureka-7001" />
+        <module name="common-eureka-7002" />
+        <module name="common-eureka-7003" />
+        <module name="common-provider-dept-8001" />
+        <module name="common-provider-dept-8002" />
+        <module name="common-provider-dept-8003" />
+        <module name="common-provider-dept-hystrix-8001" />
+        <module name="common-zuul-gateway-9527" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="consumer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
